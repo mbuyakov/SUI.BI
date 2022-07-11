@@ -1,0 +1,3 @@
+include(':suibi-structured-query-to-sql-converter')
+
+rootProject.name = 'sui'
