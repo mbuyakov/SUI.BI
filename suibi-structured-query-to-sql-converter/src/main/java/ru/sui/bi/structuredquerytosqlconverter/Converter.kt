@@ -8,6 +8,7 @@ class Converter(
     private val converterMetaHelperFactory: ConverterMetaHelperFactory
 ) {
 
+    @Throws(ConversionException::class)
     fun convert(structuredQuery: StructuredQuery): String {
         validate(structuredQuery)
 

@@ -1,14 +1,9 @@
 package ru.sui.bi.structuredquerytosqlconverter.model
 
-import com.fasterxml.jackson.annotation.JsonProperty
-
 class Join(
-    @JsonProperty("source-table")
     val sourceTable: Long,
     val strategy: Strategy? = null,
-    @JsonProperty("left-on")
     val leftOn: On,
-    @JsonProperty("right-on")
     val rightOn: On,
     val alias: String
 ) {

@@ -176,7 +176,7 @@ internal class ConverterTest(
     }
 
     private fun createConverter(): Converter {
-        val dialectHelperRegistry = ConverterDialectHelperRegistry(listOf(PostgresConverterDialectHelper()))
+        val dialectHelperRegistry = ConverterDialectHelperRegistry(PostgresConverterDialectHelper())
         val metaHelperFactory = ConverterMetaHelperFactory(tableInfoRepository, columnInfoRepository)
 
         return Converter(dialectHelperRegistry, metaHelperFactory)
