@@ -19,6 +19,6 @@ else
   FOLDER="$2"
 fi
 
-curl -v -X PUT --user jenkins:${NEXUS_PASS} --upload-file ./${FOLDER}/build/libs/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}.jar https://nexus.suilib.ru/repository/mvn-sui/ru/suibi/${SUBPROJECT}/${BUILD_NUMBER}${SUFFIX}/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}.jar
-curl -v -X PUT --user jenkins:${NEXUS_PASS} --upload-file ./${FOLDER}/build/libs/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}-sources.jar https://nexus.suilib.ru/repository/mvn-sui/ru/suibi/${SUBPROJECT}/${BUILD_NUMBER}${SUFFIX}/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}-sources.jar
-curl -v -X PUT --user jenkins:${NEXUS_PASS} --upload-file ./${FOLDER}/build/libs/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}.pom https://nexus.suilib.ru/repository/mvn-sui/ru/suibi/${SUBPROJECT}/${BUILD_NUMBER}${SUFFIX}/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}.pom
+curl -v -X PUT --user jenkins:${NEXUS_PASS} --upload-file ./${FOLDER}/build/libs/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}.jar https://nexus.suilib.ru/repository/mvn-sui/ru/sui/bi/${SUBPROJECT}/${BUILD_NUMBER}${SUFFIX}/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}.jar
+curl -v -X PUT --user jenkins:${NEXUS_PASS} --upload-file ./${FOLDER}/build/libs/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}-sources.jar https://nexus.suilib.ru/repository/mvn-sui/ru/sui/bi/${SUBPROJECT}/${BUILD_NUMBER}${SUFFIX}/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}-sources.jar
+curl -v -X PUT --user jenkins:${NEXUS_PASS} --upload-file ./${FOLDER}/build/libs/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}.pom https://nexus.suilib.ru/repository/mvn-sui/ru/sui/bi/${SUBPROJECT}/${BUILD_NUMBER}${SUFFIX}/${SUBPROJECT}-${BUILD_NUMBER}${SUFFIX}.pom
