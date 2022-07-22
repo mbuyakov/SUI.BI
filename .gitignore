@@ -10,6 +10,7 @@ release.properties
 gradle
 gradlew
 gradlew.bat
+build
 
 # Eclipse
 .project
