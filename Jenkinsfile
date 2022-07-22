@@ -27,7 +27,6 @@ pipeline {
         stage("[JVM] Build") {
           steps {
             sh """
-              cd java
               gradle build
             """
           }
@@ -38,7 +37,6 @@ pipeline {
           }
           steps {
             sh """
-              cd java
               sh ./upload.sh suibi-structured-query-to-sql-converter
             """
           }
