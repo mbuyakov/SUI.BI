@@ -16,9 +16,6 @@ pipeline {
 
   stages {
     stage("JVM") {
-      when {
-        environment name: 'build_jvm', value: 'true'
-      }
       agent {
         docker {
           image 'gradle:6.7-jdk8'
