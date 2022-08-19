@@ -61,9 +61,9 @@ class Parser(private val objectMapper: ObjectMapper) {
     }
 
     private fun parseFieldsInternal(node: JsonNode): List<Field>? {
-        return parseObjectList(node) {
-            val field = node.get("field")?.let { objectMapper.treeToValue<Long?>(it) }
-            val joinAlias = node.get("join-alias")?.let { objectMapper.treeToValue<String?>(it) }
+        return parseObjectList(node) { element ->
+            val field = element.get("field")?.let { objectMapper.treeToValue<Long?>(it) }
+            val joinAlias = element.get("join-alias")?.let { objectMapper.treeToValue<String?>(it) }
 
             return@parseObjectList Field(
                 field = field ?: throw ParseException("Поле \"field\" у объекта Field не заполнено"),
@@ -73,13 +73,13 @@ class Parser(private val objectMapper: ObjectMapper) {
     }
 
     private fun parseJoinsInternal(node: JsonNode): List<Join>? {
-        return parseObjectList(node) {
-            val sourceTable = node.get("source-table")?.let { objectMapper.treeToValue<Long?>(it) }
-            val leftOn = parseJoinOnInternal(node.path("left-on"))
-            val rightOn = parseJoinOnInternal(node.path("right-on"))
-            val alias = node.get("alias")?.let { objectMapper.treeToValue<String?>(it) }
+        return parseObjectList(node) { element ->
+            val sourceTable = element.get("source-table")?.let { objectMapper.treeToValue<Long?>(it) }
+            val leftOn = parseJoinOnInternal(element.path("left-on"))
+            val rightOn = parseJoinOnInternal(element.path("right-on"))
+            val alias = element.get("alias")?.let { objectMapper.treeToValue<String?>(it) }
 
-            val strategyText = node.get("strategy")?.asText(null)
+            val strategyText = element.get("strategy")?.asText(null)
             val strategy = when (strategyText?.toLowerCase()?.takeIf { it.isNotBlank() }) {
                 null -> null
                 "inner" -> Join.Strategy.INNER_JOIN
@@ -118,11 +118,11 @@ class Parser(private val objectMapper: ObjectMapper) {
     }
 
     private fun parseAggregationsInternal(node: JsonNode): List<Aggregation>? {
-        return parseObjectList(node) {
-            val aggFunction = node.get("agg-function")?.let { objectMapper.treeToValue<String?>(it) }
-            val field = node.get("field")?.let { objectMapper.treeToValue<Long?>(it) }
-            val fieldAlias = node.get("field-alias")?.let { objectMapper.treeToValue<String?>(it) }
-            val joinAlias = node.get("join-alias")?.let { objectMapper.treeToValue<String?>(it) }
+        return parseObjectList(node) { element ->
+            val aggFunction = element.get("agg-function")?.let { objectMapper.treeToValue<String?>(it) }
+            val field = element.get("field")?.let { objectMapper.treeToValue<Long?>(it) }
+            val fieldAlias = element.get("field-alias")?.let { objectMapper.treeToValue<String?>(it) }
+            val joinAlias = element.get("join-alias")?.let { objectMapper.treeToValue<String?>(it) }
 
             return@parseObjectList Aggregation(
                 aggFunction = aggFunction ?: throw ParseException("Поле \"agg-function\" у объекта Aggregation не заполнено"),
@@ -134,9 +134,9 @@ class Parser(private val objectMapper: ObjectMapper) {
     }
 
     private fun parseGroupByInternal(node: JsonNode): List<GroupBy>? {
-        return parseObjectList(node) {
-            val field = node.get("field")?.let { objectMapper.treeToValue<Long?>(it) }
-            val joinAlias = node.get("join-alias")?.let { objectMapper.treeToValue<String?>(it) }
+        return parseObjectList(node) { element ->
+            val field = element.get("field")?.let { objectMapper.treeToValue<Long?>(it) }
+            val joinAlias = element.get("join-alias")?.let { objectMapper.treeToValue<String?>(it) }
 
             return@parseObjectList GroupBy(
                 field = field ?: throw ParseException("Поле \"field\" у объекта GroupBy не заполнено"),
@@ -217,11 +217,11 @@ class Parser(private val objectMapper: ObjectMapper) {
     }
 
     private fun parseOrderByInternal(node: JsonNode): List<OrderBy>? {
-        return parseObjectList(node) {
-            val order = node.get("order")?.asText(null)?.toUpperCase()?.let { OrderBy.Direction.valueOf(it) }
-            val field = node.get("field")?.let { objectMapper.treeToValue<Long?>(it) }
-            val fieldAlias = node.get("field-alias")?.let { objectMapper.treeToValue<String?>(it) }
-            val joinAlias = node.get("join-alias")?.let { objectMapper.treeToValue<String?>(it) }
+        return parseObjectList(node) { element ->
+            val order = element.get("order")?.asText(null)?.toUpperCase()?.let { OrderBy.Direction.valueOf(it) }
+            val field = element.get("field")?.let { objectMapper.treeToValue<Long?>(it) }
+            val fieldAlias = element.get("field-alias")?.let { objectMapper.treeToValue<String?>(it) }
+            val joinAlias = element.get("join-alias")?.let { objectMapper.treeToValue<String?>(it) }
 
             return@parseObjectList OrderBy(
                 order = order,
