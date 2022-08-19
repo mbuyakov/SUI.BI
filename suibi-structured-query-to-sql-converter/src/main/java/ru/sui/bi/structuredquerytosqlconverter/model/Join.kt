@@ -1,6 +1,6 @@
 package ru.sui.bi.structuredquerytosqlconverter.model
 
-class Join(
+data class Join(
     val sourceTable: Long,
     val strategy: Strategy? = null,
     val leftOn: On,
@@ -15,7 +15,7 @@ class Join(
         FULL_JOIN
     }
 
-    class On(
+    data class On(
         val field: Long,
         val alias: String? = null
     )

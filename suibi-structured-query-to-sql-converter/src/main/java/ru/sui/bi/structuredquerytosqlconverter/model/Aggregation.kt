@@ -1,6 +1,6 @@
 package ru.sui.bi.structuredquerytosqlconverter.model
 
-class Aggregation(
+data class Aggregation(
     val aggFunction: String,
     val field: Long? = null,
     val fieldAlias: String,

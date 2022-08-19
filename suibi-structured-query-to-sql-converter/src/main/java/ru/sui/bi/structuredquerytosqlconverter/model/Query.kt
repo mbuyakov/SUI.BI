@@ -1,6 +1,6 @@
 package ru.sui.bi.structuredquerytosqlconverter.model
 
-class Query(
+data class Query(
     val sourceTable: Long,
     val fields: List<Field>? = null,
     val joins: List<Join>? = null,

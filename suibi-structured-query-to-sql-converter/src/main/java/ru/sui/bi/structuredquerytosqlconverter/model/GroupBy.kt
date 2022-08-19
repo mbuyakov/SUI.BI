@@ -1,6 +1,6 @@
 package ru.sui.bi.structuredquerytosqlconverter.model
 
-class GroupBy(
+data class GroupBy(
     val field: Long,
     val joinAlias: String? = null
 )

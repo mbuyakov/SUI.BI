@@ -1,6 +1,6 @@
 package ru.sui.bi.structuredquerytosqlconverter.model
 
-class Filter(
+data class Filter(
     val field: Long,
     val operation: Operation,
     val value: List<String?>? = null,

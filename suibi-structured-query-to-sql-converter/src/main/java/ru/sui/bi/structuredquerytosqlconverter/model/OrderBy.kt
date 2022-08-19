@@ -1,6 +1,6 @@
 package ru.sui.bi.structuredquerytosqlconverter.model
 
-class OrderBy(
+data class OrderBy(
     val order: Direction? = null,
     val field: Long? = null,
     val fieldAlias: String? = null,
