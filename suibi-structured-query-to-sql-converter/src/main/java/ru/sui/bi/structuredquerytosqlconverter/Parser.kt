@@ -166,7 +166,7 @@ class Parser(private val objectMapper: ObjectMapper) {
             nodesNode.isNull || nodesNode.isMissingNode -> emptyList()
             nodesNode.isArray -> nodesNode.map {
                 if (it.has("and") || it.has("or")) {
-                    PredicateTree.Node.SubTree(parseFilterTreeInternal(nodesNode)!!)
+                    PredicateTree.Node.SubTree(parseFilterTreeInternal(it)!!)
                 } else {
                     PredicateTree.Node.Value(parseFilterInternal(it as ObjectNode))
                 }
