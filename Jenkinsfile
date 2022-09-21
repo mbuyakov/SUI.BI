@@ -14,6 +14,7 @@ pipeline {
 
   agent any
 
+/*
   stages {
     stage("JVM") {
       agent {
@@ -43,6 +44,7 @@ pipeline {
         }
       }
     }
+*/
 
     stage('Clean workspace') {
       when {
