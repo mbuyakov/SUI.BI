@@ -1,0 +1,12 @@
+server {
+  listen 3080;
+  server_name localhost;
+
+  charset UTF-8;
+
+  gzip on;
+  gzip_disable "msie6";
+  gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript;
+
+  include /etc/nginx/conf.d/*.location_conf;
+}

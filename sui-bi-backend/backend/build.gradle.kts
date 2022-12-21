@@ -18,3 +18,7 @@ dependencies {
 	implementation("io.github.microutils:kotlin-logging:$kotlinLoggingVersion")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
+
+tasks.getByName<Jar>("jar") {
+	enabled = false
+}
