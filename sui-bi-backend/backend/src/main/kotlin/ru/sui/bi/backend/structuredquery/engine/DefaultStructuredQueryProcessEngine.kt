@@ -181,13 +181,14 @@ class DefaultStructuredQueryProcessEngine(
                 else -> throw SuiBiException("Неизвестный агрегат для wildcard «$function»")
             }
         } else {
+            // Странные типы, чтобы обмануть проверки от либы
             expression = when (function.lowercase()) {
-                "count" -> Expressions.operation(Long::class.java, Ops.AggOps.COUNT_ALL_AGG, column)
-                "count-distinct" -> Expressions.operation(Long::class.java, Ops.AggOps.COUNT_DISTINCT_ALL_AGG, column)
-                "sum" -> Expressions.operation(column.type, Ops.AggOps.SUM_AGG, column)
-                "min" -> Expressions.operation(column.type, Ops.AggOps.MIN_AGG, column)
-                "max" -> Expressions.operation(column.type, Ops.AggOps.MAX_AGG, column)
-                "average" -> Expressions.operation(column.type, Ops.AggOps.AVG_AGG, column)
+                "count" -> Expressions.operation(Long::class.java, Ops.AggOps.COUNT_AGG, column)
+                "count-distinct" -> Expressions.operation(Long::class.java, Ops.AggOps.COUNT_DISTINCT_AGG, column)
+                "sum" -> Expressions.operation(Number::class.java, Ops.AggOps.SUM_AGG, column)
+                "min" -> Expressions.operation(Number::class.java, Ops.AggOps.MIN_AGG, column)
+                "max" -> Expressions.operation(Number::class.java, Ops.AggOps.MAX_AGG, column)
+                "average" -> Expressions.operation(Number::class.java, Ops.AggOps.AVG_AGG, column)
                 else -> throw SuiBiException("Неизвестный агрегат «$function»")
             }
         }

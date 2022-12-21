@@ -1,0 +1,19 @@
+.selectStyle {
+  :global {
+    div.ant-select-selection-overflow-item {
+      width: 100% !important;
+
+      & > span {
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+.tagStyle {
+  display: inline-flex;
+
+  & > span:not([role='img']) {
+    flex-grow: 1;
+  }
+}

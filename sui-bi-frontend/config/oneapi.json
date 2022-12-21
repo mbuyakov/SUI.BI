@@ -1,0 +1,552 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "SUI BI API",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "TableApi",
+      "description": "Операции с таблицами"
+    },
+    {
+      "name": "ColumnApi",
+      "description": "Операции с колонками"
+    },
+    {
+      "name": "QueryApi",
+      "description": "Операции с запросами"
+    }
+  ],
+  "paths": {
+    "/api/queries/execute": {
+      "post": {
+        "tags": [
+          "QueryApi"
+        ],
+        "summary": "Выполнение запроса",
+        "operationId": "executeQuery",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Успех",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueryResultDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ошибка валидации",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tables/{id}": {
+      "get": {
+        "tags": [
+          "TableApi"
+        ],
+        "summary": "Получение таблицы по идентификатору",
+        "operationId": "getTableById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Идентификатор таблицы",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успех",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TableDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ошибка валидации",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Колонка не найдена",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tables/databaseId={databaseId}": {
+      "get": {
+        "tags": [
+          "TableApi"
+        ],
+        "summary": "Получение таблиц по идентификатору БД",
+        "operationId": "getTablesByDatabaseId",
+        "parameters": [
+          {
+            "name": "databaseId",
+            "in": "path",
+            "description": "Идентификатор БД",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успех",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TableDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ошибка валидации",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/columns/{id}": {
+      "get": {
+        "tags": [
+          "ColumnApi"
+        ],
+        "summary": "Получение колонки по идентификатору",
+        "operationId": "getColumnById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Идентификатор колонки",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успех",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColumnDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ошибка валидации",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Колонка не найдена",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/columns/tableId={tableId}": {
+      "get": {
+        "tags": [
+          "ColumnApi"
+        ],
+        "summary": "Получение колонок по идентификатору таблицы",
+        "operationId": "getColumnsByTableId",
+        "parameters": [
+          {
+            "name": "tableId",
+            "in": "path",
+            "description": "Идентификатор таблицы",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успех",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ColumnDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Ошибка валидации",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Внутренняя ошибка",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "QueryResultDto": {
+        "required": [
+          "columns",
+          "data"
+        ],
+        "type": "object",
+        "properties": {
+          "columns": {
+            "type": "array",
+            "description": "Список колонок",
+            "example": [
+              "column"
+            ],
+            "items": {
+              "type": "string",
+              "description": "Список колонок",
+              "example": "[\"column\"]"
+            }
+          },
+          "data": {
+            "type": "array",
+            "description": "Данные",
+            "example": [
+              [
+                "value"
+              ]
+            ],
+            "items": {
+              "type": "array",
+              "description": "Данные",
+              "example": [
+                [
+                  "value"
+                ]
+              ]
+            }
+          }
+        },
+        "description": "Результат выполнения запроса"
+      },
+      "ErrorDto": {
+        "required": [
+          "details",
+          "message",
+          "status",
+          "statusCode",
+          "timestamp"
+        ],
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "description": "Дата и время возникновения",
+            "format": "date-time",
+            "example": "2023-01-01T00:00:00Z"
+          },
+          "status": {
+            "type": "string",
+            "description": "Статус",
+            "example": "Bad Request"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "Код статуса",
+            "format": "int32",
+            "example": 400
+          },
+          "message": {
+            "type": "string",
+            "description": "Сообщение",
+            "example": "Example error message"
+          },
+          "details": {
+            "type": "string",
+            "description": "Детальная информация",
+            "example": "org.example.Exception: Error message"
+          }
+        },
+        "description": "Информация об ошибке"
+      },
+      "TableDto": {
+        "required": [
+          "created",
+          "databaseId",
+          "id",
+          "lastModified",
+          "tableName"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Идентификатор",
+            "format": "int64"
+          },
+          "created": {
+            "type": "string",
+            "description": "Дата и время создания",
+            "format": "date-time",
+            "example": "2023-01-01T00:00:00Z"
+          },
+          "creatorId": {
+            "type": "integer",
+            "description": "Идентификатор создателя",
+            "format": "int64",
+            "nullable": true
+          },
+          "lastModified": {
+            "type": "string",
+            "description": "Дата и время последнего изменения",
+            "format": "date-time",
+            "example": "2023-01-01T00:00:00Z"
+          },
+          "lastModifierId": {
+            "type": "integer",
+            "description": "Идентификатор последнего изменившего",
+            "format": "int64",
+            "nullable": true
+          },
+          "databaseId": {
+            "type": "integer",
+            "description": "Идентификатор БД",
+            "format": "int64"
+          },
+          "tableSchema": {
+            "type": "string",
+            "description": "Схема",
+            "nullable": true,
+            "example": "public"
+          },
+          "tableName": {
+            "type": "string",
+            "description": "Наименование",
+            "example": "example"
+          },
+          "tableType": {
+            "type": "string",
+            "description": "Тип",
+            "nullable": true,
+            "example": "BASE TABLE"
+          }
+        },
+        "description": "Информация о таблице"
+      },
+      "ColumnDto": {
+        "required": [
+          "columnName",
+          "columnType",
+          "created",
+          "id",
+          "lastModified",
+          "nullable",
+          "rawColumnType",
+          "tableId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Идентификатор",
+            "format": "int64"
+          },
+          "created": {
+            "type": "string",
+            "description": "Дата и время создания",
+            "format": "date-time",
+            "example": "2023-01-01T00:00:00Z"
+          },
+          "creatorId": {
+            "type": "integer",
+            "description": "Идентификатор создателя",
+            "format": "int64",
+            "nullable": true
+          },
+          "lastModified": {
+            "type": "string",
+            "description": "Дата и время последнего изменения",
+            "format": "date-time",
+            "example": "2023-01-01T00:00:00Z"
+          },
+          "lastModifierId": {
+            "type": "integer",
+            "description": "Идентификатор последнего изменившего",
+            "format": "int64",
+            "nullable": true
+          },
+          "tableId": {
+            "type": "integer",
+            "description": "Идентификатор таблицы",
+            "format": "int64"
+          },
+          "columnName": {
+            "type": "string",
+            "description": "Наименование",
+            "example": "id"
+          },
+          "columnType": {
+            "type": "string",
+            "description": "Тип",
+            "example": "INTEGER",
+            "enum": [
+              "BOOLEAN",
+              "INTEGER",
+              "DECIMAL",
+              "STRING",
+              "BINARY",
+              "DATE",
+              "TIME",
+              "TIME_WITH_TIMEZONE",
+              "TIMESTAMP",
+              "TIMESTAMP_WITH_TIMEZONE",
+              "OTHER"
+            ]
+          },
+          "rawColumnType": {
+            "type": "string",
+            "description": "Сырой тип",
+            "example": "bigint"
+          },
+          "nullable": {
+            "type": "boolean",
+            "description": "Значение может отсутствовать"
+          }
+        },
+        "description": "Информация о колонке"
+      }
+    }
+  }
+}

@@ -4,8 +4,8 @@ val kotlinVersion by extra("1.6.21") // Sync with plugins
 val springBootVersion by extra("2.7.3") // Sync with plugins
 val kotlinLoggingVersion by extra("2.1.23")
 val springfoxBootStarterVersion by extra("3.0.0")
-val zekoSqlBuilderVersion by extra("1.4.0")
 val hibernateTypesVersion by extra("2.19.2")
+val springDocOpenApiVersion by extra("1.6.14")
 
 plugins {
 	val kotlinVersion = "1.6.21" // Sync with top-level declaration
