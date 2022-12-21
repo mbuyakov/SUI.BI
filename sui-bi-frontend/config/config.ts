@@ -125,5 +125,6 @@ export default defineConfig({
   mfsu: {
     strategy: 'normal'
   },
-  requestRecord: {}
+  requestRecord: {},
+  history: {type: 'hash'}
 });
