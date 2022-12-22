@@ -249,7 +249,7 @@ class PostgresqlDatabaseClient(private val dataSource: DataSource) : DatabaseCli
 }
 
 private fun createQueryFactory(dataSource: DataSource): PostgreSQLQueryFactory {
-    val templates = PostgreSQLTemplates()
+    val templates = PostgreSQLTemplates.builder().printSchema().build()
     val configuration = Configuration(templates).apply { useLiterals = true }
 
     return PostgreSQLQueryFactory(configuration) { DataSourceUtils.getConnection(dataSource) }
