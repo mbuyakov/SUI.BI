@@ -79,7 +79,6 @@ function PivotGridRenderer({dataSource}: { dataSource?: PivotGridDataSource }): 
       allowSorting={true}
       allowFiltering={true}
       allowExpandAll={true}
-      height={500}
       showBorders={true}
       fieldChooser={{enabled: false}}
     />
